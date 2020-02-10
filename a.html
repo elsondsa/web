@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>ADD</title>
+        
+    
+    </head>
+    <body>
+        <input type="textbox" id="value1">
+        <input type="textbox" id="value2">
+        <button onclick="sum()">add</button>
+        <p id="result"></p>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script>
+            function sum(){
+                $('#result').html(parseInt($('#value1').val())+parseInt($('#value2').val()))
+            }
+        </script>
+    </body>
+</html>

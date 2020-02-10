@@ -1,0 +1,28 @@
+<!-- <form method="POST" action="dummyURL"> -->
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <input type="text" placeholder="Enter user name"/>
+    <button id="userdata" type="button">Load Data using AJAX </button>
+    <br/>
+    <div id="result" class="emp"></div>
+    <div id="result2" class="emp"></div>
+    <div id="result3" class="emp"></div>   
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+    $('.emp').css("display","none");
+    
+    $('#userdata').click(function(){
+        console.log('button clicked')
+        $.ajax({url: "http://127.0.0.1:5500/dummy.json", success: function(resp){
+            $('#result').html(resp.Employees[0].name+"<br/>"+resp.Employees[0].age);
+            $('#result2').html(resp.Employees[1].name+"<br/>"+resp.Employees[1].age);
+            $('#result3').html(resp.Employees[2].name+"<br/>"+resp.Employees[2].age);
+            $('.emp').css("display","inline-block");
+        }});
+
+    })
+    </script>
+</body>
