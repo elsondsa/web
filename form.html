@@ -1,25 +1,30 @@
 <!-- <form method="POST" action="dummyURL"> -->
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <input type="text" placeholder="Enter user name"/>
-    <button id="userdata" type="button">Load Data using AJAX </button>
-    <br/>
-    <div id="result" class="emp"></div>
-    <div id="result2" class="emp"></div>
-    <div id="result3" class="emp"></div>   
-
+    <button id="userdata" type="button" class="btn btn-primary">Get details</button>
+    <br/> 
+    
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
     $('.emp').css("display","none");
-    
+    var k=0;
     $('#userdata').click(function(){
         console.log('button clicked')
         $.ajax({url: "http://127.0.0.1:5500/dummy.json", success: function(resp){
-            $('#result').html(resp.Employees[0].name+"<br/>"+resp.Employees[0].age);
-            $('#result2').html(resp.Employees[1].name+"<br/>"+resp.Employees[1].age);
-            $('#result3').html(resp.Employees[2].name+"<br/>"+resp.Employees[2].age);
+            for(i in resp.Employees)
+            {
+            var xp=$('<div id = "result'+k+'" class="emp" class="card" style="width: 18rem;"></div>');
+            //$('#result'+k).html(resp.Employees[k].name+'<br/>'+resp.Employees[k].age)
+            var vr=$('<div class="card-body"></div>');
+            $("<h5 class='card-text'>Name:"+resp.Employees[k].name+"</h5>").appendTo(vr);
+            $("<h5 class='card-text'>Name:"+resp.Employees[k].age+"</h5>").appendTo(vr);
+            k=k+1;
+            $(xp).append(vr);
+            $("body").append(xp);
+            }
             $('.emp').css("display","inline-block");
         }});
 
